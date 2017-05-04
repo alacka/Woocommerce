@@ -1,0 +1,53 @@
+В специально созданном include файле для функций woocommerce прописываем и комментируем отключение всех хуков шаблонов WC.
+
+// Отключаем стандартные хуки wordpress (категория товара)
+
+//remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10 ); 
+// sale_flash вставлен в сам шаблон + percentage
+
+
+//remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
+
+//remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
+
+//remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5 );
+//remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
+
+//remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+
+
+
+// Отключаем стандартные хуки wordpress (карточка товара)
+
+//remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
+//remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20 );
+
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 ); 
+add_action( 'the_woocommerce_single_title', 'woocommerce_template_single_title', 5 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );  
+add_action( 'the_woocommerce_single_title', 'woocommerce_template_single_rating', 7 );
+//remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+//remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+//remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+//remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+//remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
+
+//remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
+//remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+//remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+
+
+
+// Добавить хлебные крошки под заголовок
+add_action( 'woocommerce_before_shop_loop', 'woocommerce_breadcrumb', 4 ); //В категориях
+add_action( 'the_woocommerce_single_title', 'woocommerce_breadcrumb', 6 ); //В карточке товара
+Если нужно воздействовать на какой-либо из элементов шаблона — открываем соответствующую строку и чтоб не запутаться 
+следом приписываем «пункт назначения» (если необходимо) и порядковый номер.
+
+Для шаблона товара (content-single-product.php) есть еще 2 хука, которые здесь не внесены в предложенную структуру., 
+т.к. их отключение может нести разрушительные последствия для шаблона.
+
+Открывающий и закрывающий хуки
+do_action( ‘woocommerce_before_single_product’ );
+do_action( ‘woocommerce_after_single_product’ );
+При этом их можно так же задействовать для переноса в них других элементов шаблона.
