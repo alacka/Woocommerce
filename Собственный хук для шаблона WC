@@ -1,0 +1,7 @@
+Любой элемент WC можно поместить в произвольное место. Для этого открываем соответствующую строку удалив элемент из стандартной и структуры и привязываем его к собственному хуку:
+
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );  
+add_action( 'the_woocommerce_single_title', 'woocommerce_template_single_rating', 7 );
+В самом шаблоне в том месте где нужно выводить хук ставим
+
+<?php do_action( 'the_woocommerce_single_title' ); ?>
