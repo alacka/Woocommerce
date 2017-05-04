@@ -1,0 +1,16 @@
+Пользовательские стили для WC лучше подключать НЕ через общее подключение стилей в functions, а в специальном include для WC. В этом случае стили из нашего файла css будут перекрывать стандартные стили WC без !important.
+
+// Добавляем свою таблицу стилей для woocommerce
+
+function wp_enqueue_woocommerce_style(){
+	wp_register_style( 'tester-woocommerce', get_template_directory_uri() . '/woocommerce.css' );
+	
+	if ( class_exists( 'woocommerce' ) ) {
+		wp_enqueue_style( 'tester-woocommerce' );
+	}
+}
+
+add_action( 'wp_enqueue_scripts', 'wp_enqueue_woocommerce_style' );
+Можно полностью отключить стандартные стили woocommerce
+
+add_filter( 'woocommerce_enqueue_styles', '__return_false' );
