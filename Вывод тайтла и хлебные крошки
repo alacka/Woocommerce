@@ -1,3 +1,8 @@
+<? woocommerce_breadcrumb(); ?> - хлебніе крошки
+
+
+
+
 /************* Страница товара *****************************************************************************************************/
 <div class="col-sm-6"><? $term_object = get_queried_object(); the_title(); ?></div>
 <div class="col-sm-6 bread"><div><a href="/">Главная</a> / 
