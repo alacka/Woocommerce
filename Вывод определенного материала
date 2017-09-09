@@ -1,0 +1,9 @@
+<? woocommerce_show_product_images(); ?>  -  вывод картинки
+woocommerce_template_single_excerpt ();  - краткое описания
+
+
+
+do_action( 'woocommerce_single_product_summary' ); - вывод хука
+
+
+<div id="product-<?php the_ID(); ?>" <?php post_class(); ?> > - подключить класы для страницы товара
