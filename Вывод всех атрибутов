@@ -11,3 +11,10 @@
  
 		$has_row = true;
 		?>
+ 
+	<div class="col">
+		<div class="att_label col-md-6"><div><p><?php echo wc_attribute_label( $attribute['name'] ); ?></p></div></div>
+		<div class="att_value col-md-6"><div><?php echo $att_val; ?></div></div><!-- .att_value -->
+	</div><!-- .col -->
+ 
+	<?php endforeach; ?>
