@@ -1,0 +1,13 @@
+<?php $attributes = $product->get_attributes(); foreach ( $attributes as $attribute ) :
+ 
+		if ( empty( $attribute['is_visible'] ) || ( $attribute['is_taxonomy'] && ! taxonomy_exists( $attribute['name'] ) ) ) 
+			continue;
+ 
+		$values = wc_get_product_terms( $product->get_id(), $attribute['name'], array( 'fields' => 'names' ) );
+		$att_val = apply_filters( 'woocommerce_attribute', wpautop( wptexturize( implode( ', ', $values ) ) ), $attribute, $values );
+ 
+		if( empty( $att_val ) )
+			continue;
+ 
+		$has_row = true;
+		?>
