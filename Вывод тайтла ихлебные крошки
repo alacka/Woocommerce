@@ -1,0 +1,20 @@
+/************* Страница товара *****************************************************************************************************/
+<div class="col-sm-6"><? $term_object = get_queried_object(); the_title(); ?></div>
+<div class="col-sm-6 bread"><div><a href="/">Главная</a> / 
+<?
+global $post;
+$terms = get_the_terms( $post->ID, 'product_cat' );
+foreach ( $terms as $term ) {
+    $term_link = get_term_link( $term );
+    echo '<a href="' . esc_url( $term_link ) . '">' . $term->name . '</a>';
+}
+?>
+/************* Страница магазина *****************************************************************************************************/
+
+<? if ( $_SERVER['REQUEST_URI'] == '/shop/') { ?>
+<div class="col-sm-6">Магазин</div>
+<div class="col-sm-6 bread"><div><a href="/">Главная</a> / <a href="/shop/">Магазин</a></div></div>
+<? } else { ?>
+<div class="col-sm-6"><? $term_object = get_queried_object(); echo $term_object->name; ?></div>
+<div class="col-sm-6 bread"><div><a href="/">Главная</a> / <a href="<? echo $term_object->url; ?>"><? echo $term_object->name; ?></a></div></div>
+<? } ?>
