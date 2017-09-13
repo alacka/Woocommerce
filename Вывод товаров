@@ -1,0 +1,24 @@
+<?php $posts = get_posts ("post_type=product"); ?> 
+				<?php if ($posts) : foreach ($posts as $post) : setup_postdata ($post); ?>
+				<a href="<? the_permalink(); ?>" class="carusel-num">
+					<div>
+						<div class="stiker">
+<? $new = get_field('new');  if ( $new == '' ) { } else { ?>
+							<div class="stiker-new"></div>
+<? } ?>
+<? $hot = get_field('hot'); if ( $hot == '' ) { } else { ?>
+							<div class="stiker-hot"></div>
+<? } ?>
+<? $sale = get_field('sale'); if ( $sale == '' ) { } else { ?>
+							<div class="stiker-sale"></div>
+<? } ?>
+						</div>
+						<? $image_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full');  ?>
+						<img src="<?php echo $image_url[0]; ?>" class="carusel-img">
+					</div>
+					<div>
+						<div><? the_title(); ?></div>
+						<div><? the_field('тип'); ?></div>
+					</div>
+				</a>
+				<?php endforeach; wp_reset_postdata(); endif; ?>
