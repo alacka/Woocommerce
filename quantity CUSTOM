@@ -1,6 +1,12 @@
 <div class="quantity-wrap"><? do_action( 'woocommerce_after_shop_loop_item' ); ?></div>
 
 
+/****   Старый вариант
+$('#product-box-home .qty').on('input', function() {
+	  $(this).closest('div').next('a.add_to_cart_button').attr('data-quantity', $(this).val());
+	});
+*/
+
 
 var parentSelector = $('.quantity-wrap .quantity');
 // If it's on the page
