@@ -1,0 +1,45 @@
+<div class="quantity-wrap"><? do_action( 'woocommerce_after_shop_loop_item' ); ?></div>
+
+
+
+var parentSelector = $('.quantity-wrap .quantity');
+// If it's on the page
+if( parentSelector.length ) {
+
+	// Get the original HTML
+	var numberInputs = parentSelector.html();
+	// Change number to text
+	var textInputs = numberInputs.replace('type="number"', 'type="text"');
+	// Plus button
+	var btnMore = '<button class="more">+</button>';
+	// Minus button
+	var btnLess = '<button class="less">-</button>';
+	// Append it all
+	parentSelector.append(textInputs + btnMore + btnLess);
+	// Hide the original
+	parentSelector.find('input[type="number"]').hide();
+
+	// increase or decrease the count
+	$('.more, .less').on('click', function(e) {
+
+		e.preventDefault();
+
+		var newCounter = $(this).prevAll('input.qty[type="text"]');
+		var oldCounter = $(this).prevAll('input.qty[type="number"]');
+		var counterVal = newCounter.val();
+
+		if( $(e.target).hasClass('more') ) {
+
+			counterVal++ ;
+
+		} else {
+
+			counterVal-- ;
+		}
+
+		// Apply to both inputs
+		newCounter.val(counterVal);
+		oldCounter.val(counterVal);
+		$(this).closest('div').next('a.add_to_cart_button').attr('data-quantity', counterVal ); /* Здесь добавляется в старый инпут значения */
+	});
+}
