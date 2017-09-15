@@ -1,5 +1,9 @@
-
+woocommerce/templates/global/quantity-input.php /**** здесь добавить кнопки
+<button class="plus more">+</button><button class="minus less">-</button>
+или вот так
 $( ".product-quantity > div" ).append( '<a class="minus" href="#">-</a><a class="plus" href="#">+</a>' );
+
+
 
 
 			$('.minus').click(function (e) {
