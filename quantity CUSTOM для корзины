@@ -1,0 +1,25 @@
+
+$( ".product-quantity > div" ).append( '<a class="minus" href="#">-</a><a class="plus" href="#">+</a>' );
+
+
+			$('.minus').click(function (e) {
+				 e.preventDefault();
+                var $input = $(this).parent().find('input');
+
+                var count = parseInt($input.val()) - 1;
+                count = count < 1 ? 1 : count;
+                $input.attr('value', count);
+                $input.change();
+                $( '.woocommerce-cart-form .actions input[type="submit"]' ).attr('disabled', false);
+             });
+             $('.plus').click(function (e) {
+                 e.preventDefault();
+                var $input = $(this).parent().find('input');
+                
+                $input.attr('value', parseInt($input.val()) + 1);
+                $input.change();
+                $( '.woocommerce-cart-form .actions input[type="submit"]' ).attr('disabled', false);
+            });
+
+});
+
