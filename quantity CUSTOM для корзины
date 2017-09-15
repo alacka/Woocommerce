@@ -1,3 +1,9 @@
+/************** действия после обновления корзині
+
+jQuery( document.body ).on( 'updated_cart_totals', function() { location.reload(); } );
+
+************//////////
+
 woocommerce/templates/global/quantity-input.php /**** здесь добавить кнопки
 <button class="plus more">+</button><button class="minus less">-</button>
 или вот так
