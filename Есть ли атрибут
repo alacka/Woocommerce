@@ -1,0 +1,6 @@
+<? global $product; 
+global $product;
+$product_name = $product->get_attribute( 'color' );
+
+if ($product_name == '')
+?>
