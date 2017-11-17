@@ -1,0 +1,26 @@
+if ( $('.pricelengt > span').length == 2 ) {
+		$('.pricelengt').remove();
+	}
+	
+	$.ajax({
+		   success: function() {
+			  $(".pricecopyhere").html($(".woocommerce-variation-price "));
+		   }
+		});
+	
+	$( ".variations_form" ).on( "woocommerce_variation_select_change", function () {
+		$.ajax({
+		   success: function() {
+			  $(".pricecopyhere").html('');
+			  $(".pricecopyhere").html($(".woocommerce-variation-price "));
+		   }
+		});
+	});
+  
+
+/* ***************************************************************************************************** */
+  
+<p class="price">
+	<span class="pricelengt"><? echo $product->get_price_html();  ?></span>
+	<div class="pricecopyhere"></div>
+</p>
