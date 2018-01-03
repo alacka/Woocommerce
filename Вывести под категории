@@ -1,0 +1,21 @@
+$queried_object = get_queried_object();
+$parent = $queried_object->term_id;
+$categories = get_term_children( $parent, 'product_cat' ); 
+if ( $categories && ! is_wp_error( $category ) ) : 
+
+echo '<ul>';
+
+foreach($categories as $category) :
+
+$term = get_term( $category, 'product_cat' );
+echo '<li>';
+echo '<a href="'.get_term_link($term).'" >';
+echo $term->name;
+echo '</a>';
+echo '</li>';
+
+endforeach;
+
+echo '</ul>';
+
+endif;
