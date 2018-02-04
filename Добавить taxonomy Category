@@ -33,3 +33,37 @@ register_taxonomy_for_object_type( 'material', 'product' );
 
 
 <?php the_terms( $post->ID, 'material', '', ', ', ' ' ); ?>
+
+
+
+
+
+
+
+
+
+function product_category_taxonomy() {
+$labels = array(
+        'name'              => __( 'Product Categories' ),
+        'singular_name'     => __( 'Product Category' ),
+        'search_items'      => __( 'Search Product Categories' ),
+        'all_items'         => __( 'All Product Categories' ),
+        'parent_item'       => __( 'Parent Product Category' ),
+        'parent_item_colon' => __( 'Parent Product Category:' ),
+        'edit_item'         => __( 'Edit Product Category' ), 
+        'update_item'       => __( 'Update Product Category' ),
+        'add_new_item'      => __( 'Add New Product Category' ),
+        'new_item_name'     => __( 'New Product Category' ),
+        'menu_name'         => __( 'Product Categories' ),
+    ); 
+    $args = array(
+        'labels'            => $labels,
+        'public'            =>  true,
+        'show_in_nav_menus' =>  false,
+        'has_archive'       =>  true,
+        'hierarchical'      =>  true,
+        'rewrite'           =>  array('slug' => '/products', 'with_front' => true),
+    );
+    register_taxonomy( 'protax', 'product', $args );
+}
+add_action( 'init', 'product_category_taxonomy');
