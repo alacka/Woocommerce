@@ -1,0 +1,35 @@
+add_action( 'init', 'custom_taxonomy_material' );
+function custom_taxonomy_material()  {
+$labels = array(
+    'name'                       => 'Материал',
+    'singular_name'              => 'material',
+    'menu_name'                  => 'Материал',
+    'all_items'                  => 'Все Материал',
+    'parent_item'                => 'Parent Материал',
+    'parent_item_colon'          => 'Parent ItМатериалem:',
+    'new_item_name'              => 'New Материал Name',
+    'add_new_item'               => 'Add New Материал',
+    'edit_item'                  => 'Edit Материал',
+    'update_item'                => 'Update Материал',
+    'separate_items_with_commas' => 'Separate Материал with commas',
+    'search_items'               => 'Search Материал',
+    'add_or_remove_items'        => 'Add or remove Материал',
+    'choose_from_most_used'      => 'Choose from the most used Материал',
+);
+$args = array(
+    'labels'                     => $labels,
+    'hierarchical'               => true,
+    'public'                     => true,
+    'show_ui'                    => true,
+    'show_admin_column'          => true,
+    'show_in_nav_menus'          => true,
+    'show_tagcloud'              => true,
+);
+register_taxonomy( 'material', 'product', $args );
+register_taxonomy_for_object_type( 'material', 'product' );
+}
+
+
+
+
+<?php the_terms( $post->ID, 'material', '', ', ', ' ' ); ?>
