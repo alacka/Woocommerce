@@ -1,3 +1,8 @@
+add_theme_support( 'woocommerce' ); 
+
+
+
+
 <section class="slider">
 	<div class="container">
 		<div class="row">
