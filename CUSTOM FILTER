@@ -1,0 +1,112 @@
+<?php if ($_POST['cat'] == ''){} else { $comma_separated = implode(",", $_POST['cat']); } ?>
+<input type="hidden" value="<? echo $comma_separated; ?>" class="catnameval">
+
+
+<form action="<? $str = $_SERVER["REQUEST_URI"]; $str = substr($str, 0, strpos($str, '/page/')); echo $str; ?> " method="POST" >
+
+<input type="checkbox" name="cat[]" value="produkty"/>
+<input type="checkbox" name="cat[]" value="tovary"/>
+
+<button id="go_filter" class="btn full-w">Применить фильтр</button>
+
+</form>
+
+
+
+<script type="text/javascript">
+ 
+
+var friends_arr = <?php echo json_encode($_POST['cat']); ?>;
+
+$(document).ready(function(){
+ 
+
+$('.filterchecked input').each(function(){
+
+    if ($.inArray($(this).val(), friends_arr) != -1)
+    {
+        $(this).prop('checked', true);
+    }
+
+});
+
+
+});
+</script>
+
+
+
+
+
+
+/***************************************************************************  LOOP
+
+
+
+<?php 
+
+$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+
+if ( $_POST['cat'] == '' ) {
+$args = array(
+
+    'post_type' => 'product',
+    'paged'         => $paged,
+);
+} else {
+$args = array(
+
+    'post_type' => 'product',
+    'tax_query'      => array(
+            array(
+                'taxonomy' => 'product_cat',
+                'field'    => 'slug',
+                'terms'    => $_POST['cat'],
+            ),
+        ),
+    'paged'         => $paged,
+);
+}
+$the_query = new WP_Query( $args );
+
+global $wp_query;
+// Put default query object in a temp variable
+$tmp_query = $wp_query;
+// Now wipe it out completely
+$wp_query = null;
+// Re-populate the global with our custom query
+$wp_query = $the_query;
+
+if ($the_query->have_posts()) : 
+while ($the_query->have_posts()) : $the_query->the_post(); ?>
+
+
+
+
+
+
+
+
+HERE
+
+
+
+
+
+
+<?
+endwhile;
+?>
+</div>
+<?
+    wp_pagenavi();
+    wp_reset_postdata();
+
+else :
+   echo 'No post';
+endif;
+
+// Restore original query object
+$wp_query = null;
+$wp_query = $tmp_query;
+?>
